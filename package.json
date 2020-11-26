@@ -1,7 +1,7 @@
 {
   "name": "5374.jp-at-LINE-for-Ritto",
   "version": "0.0.0",
-  "description": "Chatbot version of 5374.jp for Ritto",
+  "description": "5374.jp for Ritto at LINEは、滋賀県栗東市のごみ出し情報アプリ5374.jp for RittoのLINE版です。 Web版(https://ritto.5374.jp/)にはないその日のごみ出し情報通知をお届けします。「次の可燃ごみの日」が知りたい時はWeb版、「今日は可燃ごみ」というように、Web版と合わせてご利用ください。",
   "main": "dist/index.js",
   "author": "Yusei Ito <me@yuseiito.com>",
   "license": "MIT",
