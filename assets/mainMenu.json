@@ -1,0 +1,63 @@
+{
+  "size": {
+    "width": 2500,
+    "height": 1688
+  },
+  "selected": true,
+  "name": "メインメニュー",
+  "chatBarText": "メインメニュー",
+  "areas": [
+    {
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 2500,
+        "height": 850
+      },
+      "action": {
+        "type": "message",
+        "label": "通知の設定",
+        "text": "通知の設定"
+      }
+    },
+    {
+      "bounds": {
+        "x": 0,
+        "y": 850,
+        "width": 833,
+        "height": 836
+      },
+      "action": {
+        "type": "message",
+        "label": "不具合の報告",
+        "text": "不具合の報告"
+      }
+    },
+    {
+      "bounds": {
+        "x": 833,
+        "y": 850,
+        "width": 833,
+        "height": 836
+      },
+      "action": {
+        "type": "message",
+        "label": "開発者について",
+        "text": "開発者について"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1666,
+        "y": 850,
+        "width": 833,
+        "height": 836
+      },
+      "action": {
+        "type": "message",
+        "label": "通知の解除",
+        "text": "通知の解除"
+      }
+    }
+  ]
+}
