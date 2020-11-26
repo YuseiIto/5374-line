@@ -15,7 +15,8 @@
   "scripts": {
     "build": "npx tsc",
     "run": "dist/index.js",
-    "dev": "npx ts-node src/dev.ts"
+    "dev": "npx ts-node src/dev.ts",
+    "dev:watch":"npx ts-node-dev src/dev.ts"
   },
   "dependencies": {
     "express": "^4.17.1"
