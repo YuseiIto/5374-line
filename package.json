@@ -1,0 +1,8 @@
+{
+  "name": "5374.jp-at-LINE-for-Ritto",
+  "version": "0.0.0",
+  "description": "Chatbot version of 5374.jp for Ritto",
+  "main": "index.js",
+  "author": "Yusei Ito <me@yuseiito.com>",
+  "license": "MIT"
+}
