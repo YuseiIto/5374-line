@@ -1,13 +1,31 @@
-import Express from 'express';
-import route from './index';
+/* dev.ts
+ * 開発時やサーバレスでないアーキテクチャでの動作のためのエントリポイント
+ * ExpressでAPIを提供します
+ */
 
-const PORT: Number= Number(process.env.PORT) || 5000;
-const app: Express.Express = Express();
+import express from "express"
+import * as line from '@line/bot-sdk';
 
-app.use('/webhook', route);
+// 各メッセージのハンドラを読み込み
+import messageRoute from "./messageRoute"
 
-app.listen(PORT, () => {
-    console.log(`Listen started at port ${PORT}.`);
+const PORT:Number = Number(process.env.PORT) || 5000
+
+// 環境変数を .env　ファイルより読み込み
+require('dotenv').config()
+
+const config:line.MiddlewareConfig = {
+  channelSecret: process.env.LINE_CHANNEL_SECRET!, 
+  channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN!
+};
+
+const app:express.Express = express()
+
+app.post("/webhook", line.middleware(config), (req, res) => {
+  Promise.all(req.body.events.map(messageRoute)).then((result) =>
+    res.json(result)
+  );
 });
 
-export default app;
+app.listen(PORT)
+console.log(`Server running at ${PORT}`)

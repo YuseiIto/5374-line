@@ -16,9 +16,12 @@
     "build": "npx tsc",
     "run": "dist/index.js",
     "dev": "npx ts-node src/dev.ts",
-    "dev:watch":"npx ts-node-dev src/dev.ts"
+    "dev:watch": "npx ts-node-dev src/dev.ts"
   },
   "dependencies": {
+    "@line/bot-sdk": "^7.1.0",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1"
   }
 }
