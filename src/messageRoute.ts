@@ -16,7 +16,7 @@ export default async (event:line.WebhookEvent)=> {
 
   if (event.type=="follow") {
    // 友達追加イベント
-    message = followMessage;
+    message = followMessage();
   }else{
    return Promise.resolve(null)
   }
