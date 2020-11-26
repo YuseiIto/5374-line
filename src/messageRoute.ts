@@ -1,5 +1,6 @@
 import * as line from '@line/bot-sdk';
 import followMessage from './messages/followMessage'
+import selectArea from './messages/selectArea';
 
 // 環境変数を .envファイルから読み込み
 require('dotenv').config()
@@ -17,6 +18,15 @@ export default async (event:line.WebhookEvent)=> {
   if (event.type=="follow") {
    // 友達追加イベント
     message = followMessage();
+  }else if (event.type=="message" && event.message.type == "text") {
+    // テキストメッセージ
+
+    if(event.message.text=='通知の設定'){
+      message=selectArea()
+    }else{
+      return Promise.resolve(null)
+    }
+
   }else{
    return Promise.resolve(null)
   }
