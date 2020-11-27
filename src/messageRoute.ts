@@ -2,6 +2,7 @@ import * as line from '@line/bot-sdk';
 import followMessage from './messages/followMessage'
 import selectArea from './messages/selectArea';
 import selectTime from './messages/pickNotificationTime'
+import confirmNotificationSettings from './messages/confirmNotificationSettings';
 
 // 環境変数を .envファイルから読み込み
 require('dotenv').config()
@@ -32,6 +33,9 @@ export default async (event:line.WebhookEvent)=> {
     switch(postback.type){
       case 'selectArea':
         message=selectTime(postback.selectedAreaName)
+        break;
+      case 'notificationTime':
+        message=confirmNotificationSettings(postback.selectedAreaName,event.postback.params!.time!)
         break;
       default:
         message={type:'text',text:'Error: Unknown postback action'}
