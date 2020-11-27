@@ -3,6 +3,7 @@ import followMessage from './messages/followMessage'
 import selectArea from './messages/selectArea';
 import selectTime from './messages/pickNotificationTime'
 import confirmNotificationSettings from './messages/confirmNotificationSettings';
+import notificationSettingsConfirmed from './handlers/notificationSettingsConfirmed';
 
 // 環境変数を .envファイルから読み込み
 require('dotenv').config()
@@ -36,6 +37,15 @@ export default async (event:line.WebhookEvent)=> {
         break;
       case 'notificationTime':
         message=confirmNotificationSettings(postback.selectedAreaName,event.postback.params!.time!)
+        break;
+      case 'confirmNotificationSettings':
+        if(postback.confirm){
+          // 「はい」
+          message=await notificationSettingsConfirmed(event.source.userId!,postback.selectedAreaName,postback.notificationTime)
+        }else{
+          message=selectArea()
+        }
+       
         break;
       default:
         message={type:'text',text:'Error: Unknown postback action'}
