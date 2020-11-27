@@ -37,8 +37,8 @@ export default ():line.FlexMessage=>{
         "type": "button",
         "action": {
           "type": "postback",
-          "label": "大宝・大宝東・大宝西・今勝",
-          "text": "大宝・大宝東・大宝西・今勝エリア",
+          "label": "大宝・大宝東・大宝西・金勝",
+          "text": "大宝・大宝東・大宝西・金勝エリア",
           "data": JSON.stringify({type:'selectArea',selectedAreaName:"大宝・大宝東・大宝西・金勝エリア"})
         },
         "color": "#002888",
@@ -53,9 +53,9 @@ export default ():line.FlexMessage=>{
         "type": "button",
         "action": {
           "type": "postback",
-          "label": "治田・治田西・治田東",
-          "text": "治田・治田西・治田東エリア",
-          "data": JSON.stringify({type:'selectArea',selectedAreaName:"治田・治田西・治田東エリア"})
+          "label": "治田・治田東・治田西",
+          "text": "治田・治田東・治田西エリア",
+          "data": JSON.stringify({type:'selectArea',selectedAreaName:"治田・治田東・治田西エリア"})
         },
         "color": "#EA5600",
         "margin": "sm",
