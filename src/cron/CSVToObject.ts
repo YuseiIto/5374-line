@@ -8,6 +8,10 @@ export default(CSVString:string):Object=>{
 
  const fields=lines[0].split(',')
 
+ if(!fields.includes('地名')){
+  throw new Error("No 地名 column is included")
+ }
+
  // ヘッダ行を消す
  lines.shift()
 
@@ -28,7 +32,7 @@ export default(CSVString:string):Object=>{
     rowObj[fields[i]]=columns[i]
    }
 
-   result.push(rowObj)
+   result[rowObj['地名']]=rowObj
   }
  }
 
