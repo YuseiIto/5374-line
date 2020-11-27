@@ -39,7 +39,7 @@ export default (selectedAreaName:string):line.FlexMessage=>{
         "action": {
           "type": "datetimepicker",
           "label": "時刻を設定",
-          "data": JSON.stringify({type:'notifyTime',selectedAreaName}),
+          "data": JSON.stringify({type:'notificationTime',selectedAreaName}),
           "mode": "time",
           "initial": "07:55",
           "max": "23:59",
