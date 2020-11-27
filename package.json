@@ -13,17 +13,21 @@
     "typescript": "^4.1.2"
   },
   "scripts": {
-    "build": "npx tsc",
+    "build": "tsc",
     "run": "dist/index.js",
     "dev": "npx ts-node src/dev.ts",
-    "dev:watch": "npx ts-node-dev src/dev.ts"
+    "dev:watch": "npx ts-node-dev src/dev.ts",
+    "test": "jest"
   },
   "dependencies": {
     "@line/bot-sdk": "^7.1.0",
+    "@types/jest": "^26.0.15",
     "@types/pg": "^7.14.7",
     "crypto": "^1.0.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "pg": "^8.5.1"
+    "jest": "^26.6.3",
+    "pg": "^8.5.1",
+    "ts-jest": "^26.4.4"
   }
 }
