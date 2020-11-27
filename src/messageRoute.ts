@@ -1,6 +1,7 @@
 import * as line from '@line/bot-sdk';
 import followMessage from './messages/followMessage'
 import selectArea from './messages/selectArea';
+import selectTime from './messages/pickNotificationTime'
 
 // 環境変数を .envファイルから読み込み
 require('dotenv').config()
@@ -26,7 +27,15 @@ export default async (event:line.WebhookEvent)=> {
     }else{
       return Promise.resolve(null)
     }
-
+  }else if(event.type=="postback" && event.postback.data){
+    const postback=JSON.parse(event.postback.data)
+    switch(postback.type){
+      case 'selectArea':
+        message=selectTime(postback.selectedAreaName)
+        break;
+      default:
+        message={type:'text',text:'Error: Unknown postback action'}
+    }
   }else{
    return Promise.resolve(null)
   }
