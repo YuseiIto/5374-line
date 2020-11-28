@@ -5,6 +5,7 @@ import selectTime from './messages/pickNotificationTime'
 import confirmNotificationSettings from './messages/confirmNotificationSettings';
 import notificationSettingsConfirmed from './handlers/notificationSettingsConfirmed';
 import confirmNotificationClear from './messages/confirmNotificationClear'
+import notificationClearConfirmed from './handlers/notificationClearConfirmed';
 
 // 環境変数を .envファイルから読み込み
 require('dotenv').config()
@@ -48,7 +49,15 @@ export default async (event:line.WebhookEvent)=> {
         }else{
           message=selectArea()
         }
-       
+       break;
+
+      case 'confirmNotificationClear':
+        if(postback.confirm){
+          // 「はい」
+          message=await notificationClearConfirmed(event.source.userId!)
+        }else{
+          message={type:'text',text:'引き続き通知をお届けします!'}
+        }
         break;
       default:
         message={type:'text',text:'Error: Unknown postback action'}
