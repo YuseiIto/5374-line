@@ -1,5 +1,5 @@
 import * as line from '@line/bot-sdk';
-import followMessage from './messages/followMessage'
+import followMessage from './handlers/follow'
 import selectArea from './messages/selectArea';
 import selectTime from './messages/pickNotificationTime'
 import confirmNotificationSettings from './messages/confirmNotificationSettings';
@@ -22,7 +22,7 @@ export default async (event:line.WebhookEvent)=> {
 
   if (event.type=="follow") {
    // 友達追加イベント
-    message = followMessage();
+    message = await followMessage(event.source.userId!);
   }else if (event.type=="message" && event.message.type == "text") {
     // テキストメッセージ
 
