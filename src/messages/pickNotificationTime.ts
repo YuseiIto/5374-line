@@ -51,13 +51,21 @@ export default (selectedAreaName:string):line.FlexMessage=>{
   },
   "footer": {
     "type": "box",
-    "layout": "horizontal",
+    "layout": "vertical",
     "contents": [
       {
         "type": "text",
         "text": "※通知は設定した時間から5分程度前後して配信される場合があります",
         "size": "sm",
         "margin": "sm",
+        "wrap": true,
+        "contents": []
+      },
+      {
+        "type": "text",
+        "text": "※栗東市のごみの収集は8:00までです。8:00以降に設定した場合は翌日のごみの日情報をお知らせします",
+        "size": "sm",
+        "margin": "md",
         "wrap": true,
         "contents": []
       }
