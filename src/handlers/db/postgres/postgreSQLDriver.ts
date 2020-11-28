@@ -23,4 +23,26 @@ export default class PostgreSQLDriver {
   }).catch(e=>{throw e}); 
  }
 
+ public async getUsersToNotify(time:string):Promise<Array<{users:Array<string>}>>{
+  if(!/[0-9]{2}\:[0-9]{2}/.test(time)){
+   // Invalid UserID
+   throw new Error("Invalid notification time");
+  }
+  
+  const res=await db.query(
+   {text:"SELECT * from users WHERE time=$1",values:[time]
+  }).catch(e=>{throw e}); 
+
+  const result:any={}
+
+  for(const elm of res.rows){
+   if(result[elm.area]===undefined){
+    result[elm.area]={users:[]}
+   }
+   result[elm.area]['users'].push(elm.user_id)
+  }
+
+  return result
+ }
+
 }
