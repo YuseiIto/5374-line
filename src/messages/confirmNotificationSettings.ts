@@ -5,7 +5,7 @@ import * as line from '@line/bot-sdk';
 export default (selectedAreaName:string,notificationTime:string):line.TemplateMessage=>{
 return {
  "type": "template",
- "altText": "this is a confirm template",
+ "altText": "設定内容を確認してください",
  "template": {
    "type": "confirm",
    "actions": [
