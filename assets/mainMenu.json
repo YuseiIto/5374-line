@@ -1,7 +1,7 @@
 {
   "size": {
     "width": 2500,
-    "height": 1688
+    "height": 1686
   },
   "selected": true,
   "name": "メインメニュー",
@@ -28,9 +28,9 @@
         "height": 836
       },
       "action": {
-        "type": "message",
+        "type": "uri",
         "label": "不具合の報告",
-        "text": "不具合の報告"
+        "uri": "https://docs.google.com/forms/d/e/1FAIpQLScENy-ayVCXrOhgoQRgYUgdXz06ZPAadQV4QFzE6a2jT3E7sA/viewform?usp=sf_link"
       }
     },
     {
