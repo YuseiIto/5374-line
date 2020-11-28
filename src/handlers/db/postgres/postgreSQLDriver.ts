@@ -36,6 +36,11 @@ export default class PostgreSQLDriver {
   const result:any={}
 
   for(const elm of res.rows){
+
+   if(elm.area==='disabled'){
+    continue
+   }
+
    if(result[elm.area]===undefined){
     result[elm.area]={users:[]}
    }
@@ -45,4 +50,10 @@ export default class PostgreSQLDriver {
   return result
  }
 
+
+ public async clearNotification(userId:string){
+  await db.query(
+   {text:"UPDATE users SET area='disabled' WHERE user_id=$1",values:[userId]
+  }); 
+ }
 }
