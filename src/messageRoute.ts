@@ -6,6 +6,7 @@ import confirmNotificationSettings from './messages/confirmNotificationSettings'
 import notificationSettingsConfirmed from './handlers/notificationSettingsConfirmed';
 import confirmNotificationClear from './messages/confirmNotificationClear'
 import notificationClearConfirmed from './handlers/notificationClearConfirmed';
+import about from './messages/about'
 
 // 環境変数を .envファイルから読み込み
 require('dotenv').config()
@@ -30,6 +31,8 @@ export default async (event:line.WebhookEvent)=> {
       message=selectArea()
     }else if(event.message.text=='通知の解除'){
       message=confirmNotificationClear()
+    }else if(event.message.text=='開発者について'){
+      message=about()
     }else{
       return Promise.resolve(null)
     }
