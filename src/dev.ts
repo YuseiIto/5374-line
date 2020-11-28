@@ -5,6 +5,7 @@
 
 import express from "express"
 import * as line from '@line/bot-sdk';
+import deliverNotification from './deliverNotification'
 
 // 各メッセージのハンドラを読み込み
 import messageRoute from "./messageRoute"
@@ -29,3 +30,5 @@ app.post("/webhook", line.middleware(config), (req, res) => {
 
 app.listen(PORT)
 console.log(`Server running at ${PORT}`)
+
+setInterval(deliverNotification,60*1000)
