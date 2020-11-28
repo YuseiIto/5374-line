@@ -100,7 +100,7 @@ export function isDateMatchesToExpression(longExpression:string,date:Date):Boole
  return false;
 }
 
-export default async function compute(day:Date,areaName:string){
+export default async function compute(date:Date,areaName:string):Array<string>{
  const sourceData:any=CSVToObject(await fetchCSV())
 
  if(!sourceData[areaName]){
@@ -113,5 +113,12 @@ export default async function compute(day:Date,areaName:string){
 
  const trashesToday=[];
 
+ for(const trashType in rules){
+  if(isDateMatchesToExpression(rules[trashType],date)){
+   trashesToday.push(trashType)
+  }
+ }
+
+ return trashesToday
 
 }
