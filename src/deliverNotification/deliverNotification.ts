@@ -40,16 +40,16 @@ const config:line.ClientConfig = {
 const client:line.Client = new line.Client(config)
 
 
-export default async ()=>{
- const now=new Date()
+export default async (date?:Date)=>{
+ 
+ const now=date||new Date()
  const db=new PostgreSQLDriver()
-
- const areaUsers=await db.getUsersToNotify(`${now.getHours()}:${now.getMinutes()}:00`)
-
+ const areaUsers=await db.getUsersToNotify(`${('00'+now.getHours()).slice(-2)}:${('00'+now.getMinutes()).slice(-2)}:00`)
+ 
  for(const area in  areaUsers){
   const {users}=areaUsers[area]
   
-  const text=await generateMessageTextOfArea(area,new Date('2020/11/18'))
+  const text=await generateMessageTextOfArea(area,now)
 
   for(const user of users){
    await client.pushMessage(user,{type:'text',text})
