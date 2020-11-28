@@ -100,7 +100,7 @@ export function isDateMatchesToExpression(longExpression:string,date:Date):Boole
  return false;
 }
 
-export default async function compute(date:Date,areaName:string):Array<string>{
+export default async function compute(date:Date,areaName:string):Promise<Array<string>>{
  const sourceData:any=CSVToObject(await fetchCSV())
 
  if(!sourceData[areaName]){
