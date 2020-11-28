@@ -3,8 +3,19 @@ import db from "./db"
 
 
 export default class PostgreSQLDriver {
- 
- public async insertUser(userID:string,time:string,area:string){
+ public async insertUser(userID:string){
+
+  if(!/U[0-9a-f]{32}/.test(userID)){
+   // Invalid UserID
+   throw new Error("Invalid userID");
+  }
+  
+  await db.query(
+   {text:"INSERT INTO users(user_id,modify_date) VALUES($1,current_timestamp)",values:[userID]
+  }).catch(e=>{throw e}); 
+ }
+
+ public async configureUser(userID:string,time:string,area:string){
 
   if(!/U[0-9a-f]{32}/.test(userID)){
    // Invalid UserID
@@ -19,7 +30,7 @@ export default class PostgreSQLDriver {
   // TODO: areaのvalidationも将来的に入れたい!
   
   await db.query(
-   {text:"INSERT INTO users(user_id,time,area,modify_date) VALUES($1,$2,$3,current_timestamp)",values:[userID,time,area]
+   {text:"UPDATE users SET time=$1,area=$2,modify_date=current_timestamp WHERE user_id=$3",values:[time,area,userID]
   }).catch(e=>{throw e}); 
  }
 

@@ -4,6 +4,6 @@ import PostgreSQLDriver from './db/postgres/postgreSQLDriver'
 
 export default async function (userID:string,area:string,notificationTime:string):Promise<line.TextMessage> {
  const db:PostgreSQLDriver = new PostgreSQLDriver();
- await db.insertUser(userID,notificationTime,area).catch(e=>{throw e})
+ await db.configureUser(userID,notificationTime,area).catch(e=>{throw e})
  return {type:'text',text:`通知が設定されました! これから毎日${notificationTime}に通知をお届けします!`}
 }
