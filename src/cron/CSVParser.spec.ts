@@ -17,7 +17,7 @@ test('CSVToObject Unit Test', () => {
 
 });
 
-import {isSameDay,getNthXDay,isDateMatchesToSingleExpression} from "./computeTrashToday";
+import {isSameDay,getNthXDay,isDateMatchesToSingleExpression,isDateMatchesToExpression} from "./computeTrashToday";
 
 test('Date comparison test',()=>{
 
@@ -164,4 +164,57 @@ test('Single Expression',()=>{
 
   expect(()=>isDateMatchesToSingleExpression('火a',new Date('2020/08/02'))).toThrow(Error("Invalid area_days Expression"))
 
+})
+
+
+
+test('isDateMatchesToExpression',()=>{
+
+  expect(isDateMatchesToExpression('日',new Date('2020/01/05'))).toBe(true)
+  expect(isDateMatchesToExpression('日',new Date('2020/01/12'))).toBe(true)
+  expect(isDateMatchesToExpression('日',new Date('2020/01/19'))).toBe(true)
+  expect(isDateMatchesToExpression('日',new Date('2020/01/26'))).toBe(true)
+
+  expect(isDateMatchesToExpression('日1',new Date('2020/01/05'))).toBe(true)
+  expect(isDateMatchesToExpression('日1',new Date('2020/01/12'))).toBe(false)
+  expect(isDateMatchesToExpression('日1',new Date('2020/01/19'))).toBe(false)
+  expect(isDateMatchesToExpression('日1',new Date('2020/01/26'))).toBe(false)
+
+  expect(isDateMatchesToExpression('日 月',new Date('2020/01/05'))).toBe(true)
+  expect(isDateMatchesToExpression('日 月',new Date('2020/01/06'))).toBe(true)
+  expect(isDateMatchesToExpression('日 月',new Date('2020/01/12'))).toBe(true)
+  expect(isDateMatchesToExpression('日 月',new Date('2020/01/13'))).toBe(true)
+  expect(isDateMatchesToExpression('日 月',new Date('2020/01/19'))).toBe(true)
+  expect(isDateMatchesToExpression('日 月',new Date('2020/01/20'))).toBe(true)
+  expect(isDateMatchesToExpression('日 月',new Date('2020/01/26'))).toBe(true)
+  expect(isDateMatchesToExpression('日 月',new Date('2020/01/27'))).toBe(true)
+
+
+  expect(isDateMatchesToExpression('日 月',new Date('2020/01/01'))).toBe(false)
+  expect(isDateMatchesToExpression('日 月',new Date('2020/01/08'))).toBe(false)
+
+  expect(isDateMatchesToExpression('日1 日3',new Date('2020/01/05'))).toBe(true)
+  expect(isDateMatchesToExpression('日1 日3',new Date('2020/01/12'))).toBe(false)
+  expect(isDateMatchesToExpression('日1 日3',new Date('2020/01/19'))).toBe(true)
+  expect(isDateMatchesToExpression('日1 日3',new Date('2020/01/26'))).toBe(false)
+
+  expect(isDateMatchesToExpression('20200105',new Date('2020/01/05'))).toBe(true)
+  expect(isDateMatchesToExpression('20200105',new Date('2020/01/12'))).toBe(false)
+
+  expect(isDateMatchesToExpression('日1 日3 20200112',new Date('2020/01/05'))).toBe(true)
+  expect(isDateMatchesToExpression('日1 日3 20200112',new Date('2020/01/12'))).toBe(true)
+  expect(isDateMatchesToExpression('日1 日3 20200112',new Date('2020/01/19'))).toBe(true)
+  expect(isDateMatchesToExpression('日1 日3 20200112',new Date('2020/01/26'))).toBe(false)
+
+
+  expect(isDateMatchesToExpression('日:1',new Date('2020/01/05'))).toBe(true)
+  expect(isDateMatchesToExpression('日:2',new Date('2020/01/05'))).toBe(false)
+
+  expect(isDateMatchesToExpression('日:1 2',new Date('2020/01/05'))).toBe(true)
+  expect(isDateMatchesToExpression('日:2 3',new Date('2020/01/05'))).toBe(false)
+
+  expect(isDateMatchesToExpression('日1 日3 20200112:2',new Date('2020/01/05'))).toBe(false)
+  expect(isDateMatchesToExpression('日1 日3 20200112:2',new Date('2020/01/12'))).toBe(false)
+  expect(isDateMatchesToExpression('日1 日3 20200112:2',new Date('2020/01/19'))).toBe(false)
+  expect(isDateMatchesToExpression('日1 日3 20200112:2',new Date('2020/01/26'))).toBe(false)
 })

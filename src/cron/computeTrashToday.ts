@@ -70,6 +70,35 @@ export function isDateMatchesToSingleExpression(expression:string,date:Date):Boo
 
 
 
+export function isDateMatchesToExpression(longExpression:string,date:Date):Boolean{
+
+ let expressionsStr=''
+
+ if(longExpression.includes(':')){
+   const [expr,monthsStr]=longExpression.split(':')
+   const months=monthsStr.split(' ')
+
+   if(months.indexOf(String(date.getMonth()+1))==-1){
+    // 月が該当しない
+    return false;
+   }
+
+    expressionsStr=expr;
+ }else{
+   expressionsStr=longExpression
+ }
+ 
+
+ const expressions=expressionsStr.split(' ')
+ 
+ for(const expr of expressions){
+  if(isDateMatchesToSingleExpression(expr,date)){
+   return true;
+  }
+ }
+
+ return false;
+}
 
 export default async function compute(day:Date,areaName:string){
  const sourceData:any=CSVToObject(await fetchCSV())
