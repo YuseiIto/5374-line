@@ -4,6 +4,7 @@ import selectArea from './messages/selectArea';
 import selectTime from './messages/pickNotificationTime'
 import confirmNotificationSettings from './messages/confirmNotificationSettings';
 import notificationSettingsConfirmed from './handlers/notificationSettingsConfirmed';
+import confirmNotificationClear from './messages/confirmNotificationClear'
 
 // 環境変数を .envファイルから読み込み
 require('dotenv').config()
@@ -26,6 +27,8 @@ export default async (event:line.WebhookEvent)=> {
 
     if(event.message.text=='通知の設定'){
       message=selectArea()
+    }else if(event.message.text=='通知の解除'){
+      message=confirmNotificationClear()
     }else{
       return Promise.resolve(null)
     }
