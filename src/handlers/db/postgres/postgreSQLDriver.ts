@@ -29,8 +29,11 @@ export default class PostgreSQLDriver {
 
   // TODO: areaのvalidationも将来的に入れたい!
   
+  const h =Number(time.substring(0,2))-9%24
+  const m = Number(time.substring(3,5))
+  
   await db.query(
-   {text:"UPDATE users SET time=$1,area=$2,modify_date=current_timestamp WHERE user_id=$3",values:[time,area,userID]
+   {text:"UPDATE users SET time=$1,area=$2,modify_date=current_timestamp WHERE user_id=$3",values:[`${('00'+h).slice(-2)}:${('00'+m).slice(-2)}:00`,area,userID]
   }).catch(e=>{throw e}); 
  }
 
