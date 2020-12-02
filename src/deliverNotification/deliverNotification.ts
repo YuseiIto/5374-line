@@ -44,7 +44,7 @@ export default async (date?:Date)=>{
  
  const now=date||new Date()
  const db=new PostgreSQLDriver()
- const areaUsers=await db.getUsersToNotify(`${('00'+now.getHours()).slice(-2)}:${('00'+now.getMinutes()).slice(-2)}:00`)
+ const areaUsers=await db.getUsersToNotify(`${('00'+now.getUTCHours()).slice(-2)}:${('00'+now.getUTCMinutes()).slice(-2)}:00`)
  
  for(const area in  areaUsers){
   const {users}=areaUsers[area]
