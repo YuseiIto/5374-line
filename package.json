@@ -14,7 +14,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "run": "dist/index.js",
+    "start": "node dist/dev.js",
     "dev": "npx ts-node src/dev.ts",
     "dev:watch": "npx ts-node-dev src/dev.ts",
     "test": "jest"
