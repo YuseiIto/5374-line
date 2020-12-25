@@ -29,7 +29,7 @@ export default class PostgreSQLDriver {
 
   // TODO: areaのvalidationも将来的に入れたい!
   
-  const h =Number(time.substring(0,2))-9%24
+  const h =(Number(time.substring(0,2))-9+24)%24
   const m = Number(time.substring(3,5))
   
   await db.query(
