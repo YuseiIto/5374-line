@@ -1,4 +1,4 @@
-## Reolved Issues ✨
+## Resolved Issues ✨
 - 
 
 ## Changes ⛏
