@@ -1,0 +1,12 @@
+name: Jest test
+on:
+  pull_request:
+    branches:
+      - develop
+jobs:
+  Jest:
+    name: check_eslint_error
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - run: yarn test
