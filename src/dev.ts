@@ -28,6 +28,11 @@ app.post("/webhook", line.middleware(config), (req, res) => {
   );
 });
 
+
+app.get("/",(req,res)=>{
+  res.send("Hello! 5374.jp for Ritto at LINE is now working!")
+})
+
 app.listen(PORT)
 console.log(`Server running at ${PORT}`)
 
