@@ -7,7 +7,7 @@ export async function generateMessageTextOfArea(areaName:string,date?:Date):Prom
  let targetDate=date||new Date();
  let text=''
 
- if(targetDate.getHours()<8){
+ if((targetDate.getHours()+9+24)%24<8){
   text="今日は"
  }else{
   text="明日は"
