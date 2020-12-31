@@ -5,8 +5,9 @@ import * as line from '@line/bot-sdk'
 export async function generateMessageTextOfArea(areaName:string,date?:Date):Promise<string>{ 
  
  let targetDate=date||new Date();
+ targetDate=new Date(targetDate.getTime()+1000*60*60*9)
  let text=''
-
+  
  if(targetDate.getHours()<8){
   text="今日は"
  }else{
