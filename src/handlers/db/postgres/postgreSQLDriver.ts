@@ -7,16 +7,18 @@ export default class PostgreSQLDriver {
       throw new Error('Invalid userID');
     }
 
-    await db
-      .query({
-        text:
-          'INSERT INTO users(user_id,modify_date) VALUES($1,current_timestamp)',
-        values: [userID],
-      })
-      .catch((e) => {
-        throw e;
-      });
-  }
+  await db.query(
+   {text:"INSERT INTO users(user_id,modify_date) VALUES($1,current_timestamp)",values:[userID]
+  }).catch(
+   e=>{
+    if(/Key \(user_id\)=\(U[0-9,a-f]{32}\) already exists\./.test(e.detail)){
+     console.log("This user already exists. ignored")
+    }else{
+     throw e;
+    }
+ })
+
+}
 
   public async configureUser(
     userID: string,
