@@ -40,4 +40,5 @@ POSTGRES_DBNAME=5374DB
 
 ## PostgreSQL以外を使う
 PostgreSQL以外のデータベースを使う場合、
-`src/handlers/db/postgres/postgreSQLDriver.ts` に実装された`PostgreSQLDriver`と同等のデータベースを操作するインターフェースをもつクラスを作成することで実現可能です。必要なpublicメソッド等は`PostgreSQLDriver`を参考にして実装してください。
+`src/handlers/db/postgres/postgreSQLDriver.ts` に実装された`PostgreSQLDriver`と同等のデータベースを操作するインターフェースをもつクラスを作成することで実現可能です。 なお、実装されたカスタムデータベースドライバは、`src/handlers/DBDriver.ts` に定義されたinterface `DBDriver` をimplementすることが推奨されます。
+
