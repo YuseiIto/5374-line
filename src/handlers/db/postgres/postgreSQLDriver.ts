@@ -1,24 +1,28 @@
 import db from './db';
-
-export default class PostgreSQLDriver {
+import DBDriver from '../DBDriver';
+export default class PostgreSQLDriver implements DBDriver {
   public async insertUser(userID: string): Promise<void> {
     if (!/U[0-9a-f]{32}/.test(userID)) {
       // Invalid UserID
       throw new Error('Invalid userID');
     }
 
-  await db.query(
-   {text:"INSERT INTO users(user_id,modify_date) VALUES($1,current_timestamp)",values:[userID]
-  }).catch(
-   e=>{
-    if(/Key \(user_id\)=\(U[0-9,a-f]{32}\) already exists\./.test(e.detail)){
-     console.log("This user already exists. ignored")
-    }else{
-     throw e;
-    }
- })
-
-}
+    await db
+      .query({
+        text:
+          'INSERT INTO users(user_id,modify_date) VALUES($1,current_timestamp)',
+        values: [userID],
+      })
+      .catch((e) => {
+        if (
+          /Key \(user_id\)=\(U[0-9,a-f]{32}\) already exists\./.test(e.detail)
+        ) {
+          console.log('This user already exists. ignored');
+        } else {
+          throw e;
+        }
+      });
+  }
 
   public async configureUser(
     userID: string,
