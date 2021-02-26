@@ -116,7 +116,7 @@ export default async function compute(
   date: Date,
   areaName: string
 ): Promise<Array<string>> {
-  const sourceData = CSVToObject(await fetchCSV());
+  const sourceData: any = CSVToObject(await fetchCSV());
 
   if (!sourceData[areaName]) {
     throw new Error("Such area doesn't exsist");

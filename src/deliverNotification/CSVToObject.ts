@@ -24,7 +24,7 @@ export default (CSVString: string): unknown => {
         throw new Error('Length error');
       }
 
-      const rowObj: unknown = {};
+      const rowObj: any = {};
 
       for (let i = 0; i < fields.length; i++) {
         rowObj[fields[i]] = columns[i];
