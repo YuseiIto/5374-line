@@ -38,7 +38,7 @@ export default (): line.FlexMessage => {
             action: {
               type: 'postback',
               label: '大宝・大宝東・大宝西・金勝',
-              text: '大宝・大宝東・大宝西・金勝エリア',
+              displayText: '大宝・大宝東・大宝西・金勝エリア',
               data: JSON.stringify({
                 type: 'selectArea',
                 selectedAreaName: '大宝・大宝東・大宝西・金勝エリア',
@@ -57,7 +57,7 @@ export default (): line.FlexMessage => {
             action: {
               type: 'postback',
               label: '治田・治田東・治田西',
-              text: '治田・治田東・治田西エリア',
+              displayText: '治田・治田東・治田西エリア',
               data: JSON.stringify({
                 type: 'selectArea',
                 selectedAreaName: '治田・治田東・治田西エリア',
@@ -76,7 +76,7 @@ export default (): line.FlexMessage => {
             action: {
               type: 'postback',
               label: '葉山・葉山東',
-              text: '葉山・葉山東エリア',
+              displayText: '葉山・葉山東エリア',
               data: JSON.stringify({
                 type: 'selectArea',
                 selectedAreaName: '葉山・葉山東エリア',
