@@ -14,7 +14,7 @@ export default (
         {
           type: 'postback',
           label: 'はい',
-          text: 'はい',
+          displayText: 'はい',
           data: JSON.stringify({
             type: 'confirmNotificationSettings',
             confirm: true,
@@ -25,7 +25,7 @@ export default (
         {
           type: 'postback',
           label: 'いいえ',
-          text: 'いいえ',
+          displayText: 'いいえ',
           data: JSON.stringify({
             type: 'confirmNotificationSettings',
             confirm: false,

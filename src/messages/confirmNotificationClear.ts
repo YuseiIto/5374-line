@@ -11,7 +11,7 @@ export default (): line.TemplateMessage => {
         {
           type: 'postback',
           label: 'はい',
-          text: 'はい',
+          displayText: 'はい',
           data: JSON.stringify({
             type: 'confirmNotificationClear',
             confirm: true,
@@ -20,7 +20,7 @@ export default (): line.TemplateMessage => {
         {
           type: 'postback',
           label: 'いいえ',
-          text: 'いいえ',
+          displayText: 'いいえ',
           data: JSON.stringify({
             type: 'confirmNotificationClear',
             confirm: false,
