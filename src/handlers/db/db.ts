@@ -1,6 +1,6 @@
 /* 使いたいDBのドライバをdefault exportしてください! */
 
-import postgreSQLDriver from './postgres/postgreSQLDriver'; // PostgreSQL
-// import dynamodbDriver from './dynamodb/dynamoDBDriver'; //DynamoDB
+// import postgreSQLDriver from './postgres/postgreSQLDriver'; // PostgreSQL
+import dynamodbDriver from './dynamodb/dynamoDBDriver'; //DynamoDB
 
-export default postgreSQLDriver;
+export default dynamodbDriver;
