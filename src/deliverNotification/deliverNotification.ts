@@ -1,5 +1,5 @@
 import computeTrashToday from './computeTrashToday';
-import PostgreSQLDriver from '../handlers/db/postgres/postgreSQLDriver';
+import DBDriver from '../handlers/db/db';
 import * as line from '@line/bot-sdk';
 
 export async function generateMessageTextOfArea(
@@ -56,7 +56,7 @@ const client: line.Client = new line.Client(config);
 
 export default async (date?: Date): Promise<void> => {
   const now = date || new Date();
-  const db = new PostgreSQLDriver();
+  const db = new DBDriver();
   const areaUsers = await db.getUsersToNotify(
     `${('00' + now.getUTCHours()).slice(-2)}:${(
       '00' + now.getUTCMinutes()

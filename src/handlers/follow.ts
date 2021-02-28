@@ -1,10 +1,10 @@
 // 友達登録時
 
 import * as line from '@line/bot-sdk';
-import PostgreSQLDriver from './db/postgres/postgreSQLDriver';
+import DBDriver from './db/db';
 
 export default async function (userID: string): Promise<line.TextMessage> {
-  const db: PostgreSQLDriver = new PostgreSQLDriver();
+  const db: DBDriver = new DBDriver();
   await db.insertUser(userID);
 
   return {
