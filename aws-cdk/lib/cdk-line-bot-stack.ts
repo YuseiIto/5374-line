@@ -21,6 +21,8 @@ export class CdkLineBotStack extends cdk.Stack {
       AREA_DAYS_CSV_URL,
     } = process.env;
 
+    const POSTFIX = process.env.POSTFIX || '';
+
     if (LINE_CHANNEL_ACCESS_TOKEN == undefined) {
       throw new Error(
         'Assertion error. LINE_CHANNEL_ACCESS_TOKEN is not given.'
@@ -40,19 +42,19 @@ export class CdkLineBotStack extends cdk.Stack {
     }
 
     // Configure dynamo db
-    const dynamoTable = new Table(this, 'line5374BotDB', {
+    const dynamoTable = new Table(this, `line5374BotDB${POSTFIX}`, {
       partitionKey: {
         name: 'id',
         type: AttributeType.STRING,
       },
-      tableName: 'line5374BotDB',
+      tableName: `line5374BotDB${POSTFIX}`,
       removalPolicy: cdk.RemovalPolicy.RETAIN,
     });
 
     // Configure reply lambda function
     const replyMsgLambdaFunction = new NodejsFunction(
       this,
-      'line5374BotReplyMsgFunction',
+      `line5374BotReplyMsgFunction${POSTFIX}`,
       {
         entry: 'src/lambda/replyMsgFunction.ts',
         environment: {
@@ -70,8 +72,8 @@ export class CdkLineBotStack extends cdk.Stack {
     dynamoTable.grantReadData(replyMsgLambdaFunction);
 
     // Configure API Gateway (REST API)
-    const api = new RestApi(this, 'line5374Bot', {
-      restApiName: 'line5374BotAPI',
+    const api = new RestApi(this, `line5374Bot${POSTFIX}`, {
+      restApiName: `line5374BotAPI${POSTFIX}`,
     });
 
     const getItemIntegration = new LambdaIntegration(replyMsgLambdaFunction, {
@@ -83,7 +85,7 @@ export class CdkLineBotStack extends cdk.Stack {
     //Configure cron function
     const deliverNotificationLambdaFunction = new NodejsFunction(
       this,
-      'line5374BotDeliverNotificationFunction',
+      `line5374BotDeliverNotificationFunction${POSTFIX}`,
       {
         entry: 'src/lambda/deliverNotificationFunction.ts',
         environment: {
@@ -99,7 +101,7 @@ export class CdkLineBotStack extends cdk.Stack {
     dynamoTable.grantWriteData(deliverNotificationLambdaFunction);
     dynamoTable.grantReadData(deliverNotificationLambdaFunction);
 
-    const deliverRule = new Rule(this, 'line5374BotDeliverCronRule', {
+    const deliverRule = new Rule(this, `line5374BotDeliverCronRule${POSTFIX}`, {
       // Refer to https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/events/ScheduledEvents.html about the schedule expression
       schedule: Schedule.expression('cron(* * * * ? *)'),
     });
