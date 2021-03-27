@@ -276,17 +276,17 @@ test('Single Expression', () => {
 
   expect(() =>
     isDateMatchesToSingleExpression('hogehoge', new Date('2020/08/02'))
-  ).toThrow(Error('Invalid area_days Expression'));
+  ).toThrow(Error('Invalid area_days Expression hogehoge'));
   expect(() =>
     isDateMatchesToSingleExpression('2020070a', new Date('2020/08/02'))
-  ).toThrow(Error('Invalid area_days Expression'));
+  ).toThrow(Error('Invalid area_days Expression 2020070a'));
   expect(() =>
     isDateMatchesToSingleExpression('火a', new Date('2020/08/02'))
-  ).toThrow(Error('Invalid area_days Expression'));
+  ).toThrow(Error('Invalid area_days Expression 火a'));
 
   expect(() =>
     isDateMatchesToSingleExpression('火a', new Date('2020/08/02'))
-  ).toThrow(Error('Invalid area_days Expression'));
+  ).toThrow(Error('Invalid area_days Expression 火a'));
 });
 
 test('isDateMatchesToExpression', () => {

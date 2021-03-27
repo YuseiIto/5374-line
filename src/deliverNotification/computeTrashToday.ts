@@ -77,7 +77,7 @@ export function isDateMatchesToSingleExpression(
 
     return isSameDay(d, date);
   } else {
-    throw new Error('Invalid area_days Expression');
+    throw new Error(`Invalid area_days Expression ${expression}`);
   }
 }
 
@@ -124,7 +124,14 @@ export default async function compute(
 
   const rules = sourceData[areaName];
   delete rules['地名'];
-  delete rules['センター（center.csvを使わない場合は空白化）'];
+
+  if (rules['センター（center.csvを使わない場合は空白化）'] != undefined) {
+    delete rules['センター（center.csvを使わない場合は空白化）'];
+  }
+
+  if (rules['センター'] != undefined) {
+    delete rules['センター'];
+  }
 
   const trashesToday = [];
 
